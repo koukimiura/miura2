@@ -1,0 +1,38 @@
+<h1 class= 'text-center'>投稿詳細</h1>
+<hr>
+<%if @post.image? %>
+<div class="post-show-item" >
+    <div class="post-show-image" >
+         <P class="text-center"><%= image_tag @post. image.to_s %></P>
+    </div>
+<hr>
+<div class="post-show-item1">
+    <p class="post-title text-center"><%=@post.title %></p>
+        <div class= "post-show-content">
+            <p class= text-center ><%= @post.content %></p>
+<hr>
+        <div class="post-time">
+            <%=@post.created_at %>
+        </div>
+        </div>
+    </div>
+</div>
+<% else%>
+<div class="post-show-item" >
+    
+<div class="post-show-item2">
+    <p class="post-title2"><%=@post.title %></p>
+        <div class= "post-show-content2">
+            <%= @post.content %>
+<hr>
+        <div class="post-time">
+            <%=@post.created_at %>
+        </div>
+        </div>
+    </div>
+</div>
+<% end %>
+
+
+<p><%= link_to '編集する', edit_post_path(@post.id), class:'btn btn-info' %></p>
+<p><%= link_to '削除', post_path(@post.id), method: :delete, class:'btn btn-warning', date: {confirm: 'Sure?'} %></p>

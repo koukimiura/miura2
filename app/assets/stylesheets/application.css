@@ -1,0 +1,172 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+.my-page{
+    margin-top: 50px;
+}
+
+.header-image{
+    background-image: url(/.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.ul, li{
+    list-style-type: none;
+}
+
+.number-alarm{
+    color: red;
+}
+
+
+.posts-index-item{
+　padding: 20px 30px;
+　overflow: hidden;
+　background-color: white;
+　
+}
+
+.posts-left{
+    
+}
+
+.posts-right{
+    padding : 25px;
+}
+
+.posts-bottom {
+    
+}
+
+.posts-middle {
+    
+}
+
+
+.post-show-item{
+
+}
+
+.post-show-image{
+    
+}
+
+.post-show-item1{
+    
+}
+
+
+.post-title{
+    
+}
+
+.post-show-content{
+    
+}
+
+
+.post-tim{
+    
+}
+
+
+.post-show-item2{
+    
+}
+
+.post-title2{
+    
+}
+
+.post-show-content2{
+    
+}
+
+.post-time{
+    
+}
+
+.form-error {
+  color: #ff4d75;
+}
+
+.form-body{
+    padding: 30px;
+}
+
+.my-form {
+    padding:50px ;
+}
+
+.post-time {
+  color: #8899a6;
+  margin-bottom: 10px;
+}
+
+.posts-index-item {
+   background-color: white;
+   padding: 20px 30px;
+   overflow: hidden;
+   box-shadow: 0 2px 6px #c1ced7;
+}
+
+.posts-edit-imag {
+    padding: 50px;
+}
+
+.user {
+  width: 100px ;
+  padding-left: 15px;
+  padding-right: 15px;
+  clear: both;
+}
+
+.users-show-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 40%;
+  box-shadow: 0 2px 6px #c1ced7;
+  object-fit: cover;
+}
+
+.user-show-btn {
+    
+}
+
+ 
+ 
+.user-tabs {
+  margin-top: 40px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+}
+
+.user-tabs li {
+  float: left;
+}
+
+.user-tabs a {
+  display: inline-block;
+  padding: 30px;
+}
+
+.content-box {
+    padding-bottom: 70px
+    box-shadow: 0 2px 6px #c1ced7;
+}

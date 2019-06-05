@@ -1,0 +1,29 @@
+<h1 class= "text-center">編集する</h1>
+<hr>
+
+
+<div class="posts-edit-image">
+    <p class= "text-center"><%= image_tag @post.image.to_s %></p>
+</div>
+
+ <hr>
+
+<%= form_for @post do |f| %>
+<div class="form">
+       <div class="form-body">
+    <% @post.errors.full_messages.each do |message| %>
+        <div class="form-error">
+    <%= message %>
+     <% end %>
+     </div>
+    <p>タイトル</p>
+    <P><%= f.text_field :title, class: 'form-control' %></P>
+    <p>投稿内容</p>
+    <p><%= f.text_area :content, class: 'form-control my-form' %></p>
+    <p><%= f.label :画像 %></p>
+    <P><%= f.file_field :image, class: 'form-control' %></P>
+    <hr>
+    <p><%= f.submit "投稿する", class: 'btn btn-info' %></p>
+   </div>
+</div>
+ <% end %>
