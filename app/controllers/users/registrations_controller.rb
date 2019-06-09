@@ -3,7 +3,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
    before_action :configure_sign_up_params, only: [:create]
    before_action :configure_account_update_params, only: [:update]
-
+   protect_from_forgery #追記
+   
   # GET /resource/sign_up
    def new
     @areas = Area.all
@@ -14,6 +15,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
    def create
+    
+    @area = Area.create(area_params)
+    @user =User.find(params[:id])
+    @my_area = MyArea.create(area_id: @area.id, user_id: @user.id).merge(:area_id => @area.id)
      super
     
    end
@@ -22,12 +27,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
    def edit
     @areas = Area.all
     @area = Area.new
+    
      super
-     @user = User.new
    end
 
   # PUT /resource
    def update
+    @area = Area.create(area_params)
+    @my_area = MyArea.create(area_id: @area.id, user_id: @user.id).merge(:user_id => @user.id)
      super
    end
 
@@ -51,16 +58,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_up_params
      devise_parameter_sanitizer.permit(:sign_up,    #子モデルをユーザー登録時にいっしょにテーブルへデータを作る
-     keys: [:name, :gender, :birthday, :adress, :image, :my_size, :my_shoes_size,
+     keys:  [:name, :gender, :birthday, :adress, :image, :my_size, :my_shoes_size,
      :my_height, :genre, :my_price, :self_introduction, :attribute ])
-    
+   end
+   
+   def area_params
+     params.permit(:area =>[:area, :pref])
    end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :gender, :birthday, :adress, :image, :my_size, :my_shoes_size,
+     devise_parameter_sanitizer.permit(:account_update,
+     keys: [:name, :gender, :birthday, :adress, :image, :my_size, :my_shoes_size,
      :my_height, :genre, :my_price, :self_introduction, :attribute ])
-   end
+  end
 
   # The path used after sign up.
    def after_sign_up_path_for(resource)

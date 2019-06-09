@@ -1,4 +1,5 @@
 <h2>Sign up</h2>
+<!--test-->
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -29,8 +30,8 @@
   
   <div class="field">
   <%= f.label :name %>
-  <%= f.fields_for @my_area do |m| %>
-    <%= m.hidden_field :user_id, :value => @user.id %>
+  <%= f.fields_for @my_area do |my| %>
+    <%= my.hidden_field :user_id, :value => @user.id %>
     <% end %>
   <em class="number-alarm">＊必須</em>
   <br />
@@ -109,9 +110,12 @@
     <%= f.text_field :genre, autofocus: true, class:"form-control" %>
   </div>
   
-   <%= form_for @area do |f| %>
+   <%= f.fields_for @area do |f| %>
   <div class="field">
     <%= f.label :よく買い物に行く都道府県エリア %><br />
+    <%= f.fields_for @my_area do |my| %>
+    <%= my.hidden_field :area_id, :value => @area.id %>
+    <% end %>
     <%= f.collection_select(:pref, @areas, :id, :pref) %>
   </div>
  
@@ -134,6 +138,7 @@
     <%= f.text_area :self_introduction, autofocus: true, placeholder: "よろしく！", class:"form-control"%>
   </div>
 <br>
+
   <div class="actions">
     <p><%= f.submit "Sign up", class:"btn btn-info" %></p>
   </div>

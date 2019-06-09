@@ -35,6 +35,9 @@
   
   <div class="field">
   <%= f.label :name %>
+  <%= f.fields_for @my_area do |my| %>
+    <%= my.hidden_field :user_id, :value => @user.id %>
+    <% end %>
   <em class="number-alarm">＊必須</em>
   <br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control" %>
@@ -59,10 +62,6 @@
     <%= f.text_field :adress, autofocus: true, autocomplete: "adress", class:"form-control" %>
   </div>
 
-   <% if @user.image? %>
-   <%= image_tag @user.image.to_s %>
-   <% end %>
-   
       <div class="field">
     <%= f.label :image %><br />
     <%= f.file_field :image, class:"form-control" %>
@@ -116,9 +115,12 @@
     <%= f.text_field :genre, autofocus: true, class:"form-control" %>
   </div>
   
-  <%= form_for @area do |f| %>
+   <%= f.fields_for @area do |f| %>
   <div class="field">
     <%= f.label :よく買い物に行く都道府県エリア %><br />
+    <%= f.fields_for @my_area do |my| %>
+    <%= my.hidden_field :area_id, :value => @area.id %>
+    <% end %>
     <%= f.collection_select(:pref, @areas, :id, :pref) %>
   </div>
  
@@ -132,7 +134,7 @@
     <%= f.label :月に洋服にかける金額 %>
     <em class="number-alarm">＊選択してください</em>
     <br />
-    <%= f.select :my_price, {"~5万円" => 1, "5~10万円" => 2, "10~15万円" => 3, "15~20万円" => 4,
+    <%= f.select :my_price, {"~5万円" => 1, "5~10万円" => 2, "10~15万円" => 3,"15~20万円" => 4,
     "20~30万円" => 5,"30~50万円" => 6,"50~万円" => 7} %>
   </div>
   

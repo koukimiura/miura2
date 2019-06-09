@@ -1,0 +1,16 @@
+<% @events.each do |event| %>
+ <div class= "posts-index-item">
+  <div class="posts-left">
+   <%= image_tag event.user.image.to_s %>
+  </div>
+  <div class="posts-right">
+    <%= link_to event.user.name, user_path(event.user_id) %>
+   </div> 
+     <div class="posts-middle">
+      <%= link_to event.content, post_path(event.id) %>
+     </div>
+     <div class="posts-bottom" >
+      <%= image_tag event.image.to_s %>
+     </div>
+     </div>
+ <% end %>

@@ -8,4 +8,6 @@ class User < ApplicationRecord
          
          has_many :posts
          has_many :my_areas
+         has_many :likes
+         has_many :events
 end

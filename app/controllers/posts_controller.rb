@@ -1,11 +1,16 @@
 class PostsController < ApplicationController
+    before_action :authenticate_user?, :only => [:new, :create, :edit, :update, :destroy]
+    
     def index
         
         @posts =  Post.all.order(created_at: :desc)
+       
     end
     
     def show
         @post = Post.find(params[:id])
+        @like = Like.new
+         @like_count = Like.where(post_id @post.id).count
     end
     
     def new
@@ -17,7 +22,7 @@ class PostsController < ApplicationController
          @post= Post.new(post_params)
          if @post.save
             flash[:notice] = '投稿しました。'
-            redirect_to @post
+            redirect_to posts_path
          else
             flash[:alert] = '投稿できませんでした。'
             render 'posts/new'
@@ -30,15 +35,14 @@ class PostsController < ApplicationController
     
     def update
          @post = Post.find(params[:id])
-          @post.update(post_params)
-         if @post.save
+        if @post.update(post_params)
+          @post.save
             flash[:notice] = '投稿を編集しました。'
-            redirect_to @post
-         else
+            redirect_to posts_path
+        else
             flash[:alert] = '投稿編集できませんでした。'
             render 'posts/edit'
-         end
-        
+        end        
     end
     
     def destroy

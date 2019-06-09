@@ -1,6 +1,4 @@
-
-
-    <div class="row">
+<div class="row">
         <div class="col-xs-6">
             
     <div class="users-show-image">
@@ -16,17 +14,6 @@
     <p>よく買い物に行く都道府県エリア: </p>
     <p>よく買い物に行くエリア: </p>
     <p>月に洋服にかける金額: <%= @user.my_price %></p>
-    <% if @my_area.area.pref.present? >
-    <p>よく買い物に行く都道府県:<%= @my_area.area.pref %><p>
-    <% else %>
-    未記入
-    <% end %>
-    
-    <% if @area.area.present? >
-    <p>よく買い物に行く都道府県:<%= @my_area.area.pref %></p>
-    <% else %>
-     未記入
-    <% end %>
  <div class="user-show-btn" >
   <% if @user.id ==current_user.id %>
 <%= link_to "編集する", edit_user_registration_path(@user.id), class: "btn btn-warning" %>
@@ -46,7 +33,8 @@
     <li><%= link_to "いいね", "/users/#{@user.id}/like" %></li>
 </ul>
 
-    <% @user.posts.each do |post| %>
+    <% @like.posts.each do |post| %>
+    <% post.like %>
     <div class= "posts-index-item">
   <div class="posts-left">
    <%= link_to post.user.name, user_path(@user.id) %>

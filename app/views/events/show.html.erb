@@ -1,18 +1,16 @@
-<h1 class= 'text-center'>投稿詳細</h1>
-<hr>
-<%if @post.image? %>
+<%if @event.image? %>
 <div class="post-show-item" >
     <div class="post-show-image" >
-         <P class="text-center"><%= image_tag @post. image.to_s %></P>
+         <P class="text-center"><%= image_tag @event. image.to_s %></P>
     </div>
 <hr>
 <div class="post-show-item1">
-    <p class="post-title text-center"><%=@post.title %></p>
+    <p class="post-title text-center"><%=@event.title %></p>
         <div class= "post-show-content">
-            <p class= text-center ><%= @post.content %></p>
+            <p class= text-center ><%= @event.content %></p>
 <hr>
         <div class="post-time">
-            <%=@post.created_at %>
+            <%=@event.created_at %>
         </div>
         </div>
     </div>
@@ -21,14 +19,15 @@
 <div class="post-show-item" >
     
 <div class="post-show-item2">
-    <p class="post-title2"><%=@post.title %></p>
+    <p class="post-title2"><%=@event.title %></p>
+    <p class="post-title2"><%=@event.location %></p>
         <div class= "post-show-content2">
-            <%= @post.content %>
+            <%= @event.content %>
 <hr>
         <div class="post-time">
-            <%=@post.created_at %>
+            <%= @eventt.created_at %>
         </div>
-        <%if @like.user_id.present? && @like.post_id.present? %>
+        <%if @like.user_id.present? && @like.event_id.present? %>
         <%= link_to like_path(@like.id), method: :delete %>
         <span class='fa fa-heart like-btn-unlike'></span>
         <% else %>
@@ -42,5 +41,5 @@
 <% end %>
 
 
-<p><%= link_to '編集する', edit_post_path(@post.id), class:'btn btn-info' %></p>
-<p><%= link_to '削除', post_path(@post.id), method: :delete, class:'btn btn-warning', date: {confirm: 'Sure?'} %></p>
+<p><%= link_to '編集する', edit_post_path(@event.id), class:'btn btn-info' %></p>
+<p><%= link_to '削除', post_path(@event.id), method: :delete, class:'btn btn-warning', date: {confirm: 'Sure?'} %></p>
