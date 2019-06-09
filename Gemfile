@@ -64,3 +64,5 @@ gem 'rmagick'
 gem 'devise'
 
 gem 'railties'
+
+gem 'seed-fu', '~> 2.3'

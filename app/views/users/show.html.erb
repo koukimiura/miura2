@@ -16,14 +16,14 @@
     <p>よく買い物に行く都道府県エリア: </p>
     <p>よく買い物に行くエリア: </p>
     <p>月に洋服にかける金額: <%= @user.my_price %></p>
-    <% if @my_area.area.pref.present? >
-    <p>よく買い物に行く都道府県:<%= @my_area.area.pref %><p>
+    <% if @my_area.present? %>
+     <p>よく買い物に行く都道府県:<%= @my_area.area.pref %><p>
     <% else %>
-    未記入
+     未記入
     <% end %>
     
-    <% if @area.area.present? >
-    <p>よく買い物に行く都道府県:<%= @my_area.area.pref %></p>
+    <% if @my_area.present? %>
+     <p>よく買い物に行くエリア:<%= @my_area.area.area %></p>
     <% else %>
      未記入
     <% end %>
