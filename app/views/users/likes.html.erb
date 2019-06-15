@@ -1,5 +1,4 @@
-
-    <div class="row">
+<div class="row">
         <div class="col-xs-6">
             
     <div class="users-show">
@@ -25,9 +24,7 @@
 <%= link_to "編集する", edit_user_registration_path(@user.id), class: "btn btn-warning" %>
 <%= link_to "削除する", edit_user_registration_path(@user.id), class: "btn btn-warning" %>
   <% else %>
-<%= form_for @chat do |f| %>
-<%= f.submit "チャットする", class: "btn btn-primary" %>
-<% end %>
+チャットボタン
   <% end %>
  </div>
  <br>
@@ -38,14 +35,16 @@
 
 <div class="col-xs-6">
 <ul class="user-tabs" >
-    <li class="active"><%= link_to "投稿", user_path(@user.id) %></li>
-    <li><%= link_to "いいね", likes_user_path(@user.id) %></li>
+    <li><%= link_to "投稿", user_path(@user.id) %></li>
+    <li class="active"><%= link_to "いいね", likes_user_path(@user.id) %></li>
     <li><%= link_to "イベントにいいね", likes_events_user_path(@user.id) %></li>
     <li><%= link_to "イベント投稿", events_user_path(@user.id) %></li>
 </ul>
 
-<% @user.posts.each do |post| %>
-<div class= "posts-index-item">
+
+    <% @likes.each do |like| %>
+    <% post = Post.find_by(id: like.post_id) %>
+    <div class= "posts-index-item">
   <div class="posts-left">
    <%= image_tag post.user.image.to_s, class: "users-image" %>
   </div>
@@ -59,8 +58,8 @@
       <%= image_tag post.image.to_s, class: "posts-image" %>
      </div>
      </div>
-<% end %>
-</div>
+  </div>
+    <% end %>
+  </div>
 </div>   
-    
     

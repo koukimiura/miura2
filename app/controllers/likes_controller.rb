@@ -1,38 +1,44 @@
 class LikesController < ApplicationController
-    before_action :authenticate => [:create, :destroy]
+    before_action :authenticate_user! => [:create, :destroy]
     
     def create
-        
-        @like = Like.new(like_params)
+         #@post = Post.find(params[:post_id])
+
+        @like= Like.new(
+    user_id: current_user.id,
+    post_id: params[:post_id]
+    )
         if @like.save
-            redirect_to @post
-        end
-        @like = Like.new(like_event_params)
-        if @like.save
-            redirect_to @event
+            redirect_to post_path(params[:post_id])
         end
     end
     
     def destroy
-        @post = Post.find_by(user_id: current_user.id, post_id: params[:post_id])
-        if @like.destroy
-            redirect_to @post
-        end
-        @like = Like.find_by(user_id: current_user.id, event_id: params[:event_id])
+        @like = Like.find_by(
+            user_id: current_user.id,
+            post_id: params[:post_id]
+            )
+         @like.destroy
+            redirect_to post_path(params[:post_id])
+    end
+    
+    
+    def create_event
+        @like = Like.new(
+            user_id: current_user.id,
+            event_id: params[:event_id]
+            )
         if @like.save
-            redirect_to @event
+            redirect_to event_path(params[:event_id])
         end
     end
     
-    
-    private
-    def like_params
-        params.require(:like).permit(user_id: current_user.id,  post_id: params[:post_id])
+    def destroy_event
+       @like = Like.find_by(
+           user_id: current_user.id,
+           event_id: params[:event_id]
+           )
+        @like.destroy
+            redirect_to event_path(params[:event_id])
     end
-    
-    
-    def like_event_params
-         params.require(:like).permit(user_id: current_user.id,  event_id: params[:event_id])
-    end
-    
 end

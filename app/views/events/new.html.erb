@@ -14,7 +14,7 @@
     <p>開催場所</p>
     <P><%= f.text_field :location, class: 'form-control' %></P>
     <p>イベントの詳細</p>
-    <p><%= f.text_area :content, placeholder: 'イベントの詳細や開催場所の詳細'class: 'form-control my-form' %></p>
+    <p><%= f.text_area :content, placeholder: 'イベントの詳細や開催場所の詳細', class: 'form-control my-form' %></p>
     <p><%= f.label :画像 %></p>
     <P><%= f.file_field :image, class: 'form-control' %></P>
    <%= f.hidden_field :user_id, :value => current_user.id %>

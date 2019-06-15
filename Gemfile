@@ -66,3 +66,11 @@ gem 'devise'
 gem 'railties'
 
 gem 'seed-fu', '~> 2.3'
+
+#font-awesome
+gem 'font-awesome-rails'
+
+
+
+#delete confirm
+gem 'data-confirm-modal'

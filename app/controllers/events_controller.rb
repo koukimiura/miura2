@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-    before_action :authenticate_user?, :only => [:new, :create, :edit, :update, :destroy]
+    before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
     
     def index
         @events = Event.all.order(created_at: :desc)
@@ -9,6 +9,8 @@ class EventsController < ApplicationController
         @event = Event.find(params[:id])
         @like = Like.new
         @like_count = Like.where(id: @event.id).count
+        @message = Message.new
+        @messages = Message.where(event_id: @event.id)
     end
     
     def new
@@ -43,7 +45,8 @@ class EventsController < ApplicationController
          redirect_to events_path
     end
     
+    
     def event_params
-        params.require(:event).permit(:title, :content, :location, :user_id).merge(:user_id => current_use.id)
+        params.require(:event).permit(:title, :content, :image, :location, :user_id).merge(:user_id => current_user.id)
     end
 end

@@ -4,16 +4,18 @@
  <% @posts.each do |post| %>
  <div class= "posts-index-item">
   <div class="posts-left">
-   <%= image_tag post.user.image.to_s %>
+   <%= image_tag post.user.image.to_s, class: "users-image" %>
   </div>
   <div class="posts-right">
-    <%= link_to post.user.name, user_path(post.user_id) %>
+    名前:<%= link_to post.user.name, user_path(post.user_id) %>
    </div> 
      <div class="posts-middle">
-      <%= link_to post.content, post_path(post.id) %>
+      投稿内容:<%= link_to post.content, post_path(post.id), class: "posts-content" %>
      </div>
      <div class="posts-bottom" >
-      <%= image_tag post.image.to_s %>
+  <% if post.image.present? %>
+      <%= image_tag post.image.to_s, class: "posts-image" %>
+  <% end %>
      </div>
      </div>
  <% end %>

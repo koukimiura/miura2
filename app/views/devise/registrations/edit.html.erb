@@ -7,7 +7,7 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'  %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -16,9 +16,6 @@
 
   <div class="field">
   <%= f.label :name %>
-  <%= f.fields_for @my_area do |my| %>
-    <%= my.hidden_field :user_id, :value => @user.id %>
-    <% end %>
   <em class="number-alarm">＊必須</em>
   <br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control" %>
@@ -96,20 +93,17 @@
     <%= f.text_field :genre, autofocus: true, class:"form-control" %>
   </div>
   
-   <%= f.fields_for @area do |f| %>
-  <div class="field">
-    <%= f.label :よく買い物に行く都道府県エリア %><br />
-    <%= f.fields_for @my_area do |my| %>
-    <%= my.hidden_field :area_id, :value => @area.id %>
-    <% end %>
-    <%= f.collection_select(:pref, @areas, :id, :pref) %>
-  </div>
- 
+   
   <div class="field">
     <%= f.label :よく買い物に行くエリア %><br />
-    <%= f.collection_select(:area, @areas, :id, :area) %>
-  </div>
+    <%= f.fields_for @my_area do |my| %>
+    <%= my.hidden_field :user_id, value: current_user.id %>
+    <%= my.collection_select(:area_id, @areas, :id, :name) %>
   <% end %>
+  </div>
+
+  
+  
   
   <div class="field">
     <%= f.label :月に洋服にかける金額 %>
@@ -130,7 +124,7 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
  
-
+<br>
   <div class="actions">
     <p><%= f.submit "登録する", class:"btn btn-info" %></p>
   </div>

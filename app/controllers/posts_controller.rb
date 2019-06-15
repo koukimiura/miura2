@@ -1,16 +1,16 @@
 class PostsController < ApplicationController
-    before_action :authenticate_user?, :only => [:new, :create, :edit, :update, :destroy]
+    before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
     
     def index
-        
-        @posts =  Post.all.order(created_at: :desc)
-       
+        @posts = Post.all.order(created_at: :desc)
     end
     
     def show
         @post = Post.find(params[:id])
         @like = Like.new
-         @like_count = Like.where(post_id @post.id).count
+        @like_count = Like.where(post_id: @post.id).count
+        @message = Message.new
+        @messages = Message.where(post_id: @post.id)
     end
     
     def new
@@ -54,6 +54,6 @@ class PostsController < ApplicationController
     
     private 
     def post_params
-        params.require(:post).permit(:title, :content, :image).merge(:user_id => current_user.id)
+        params.require(:post).permit(:title, :content, :image, :user_id).merge(:user_id => current_user.id)
     end
 end
